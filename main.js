@@ -6,13 +6,13 @@ const errorDiv = document.getElementById('error-div');
 const spinner = document.getElementById("spinner");
 let count = 0;
 
-searchBtn.addEventListener('click', function(){
+const loadData = () =>{
     const searchText = searchInput.value;
     //check input is null or not
     if (searchText === "") {
         detailsContainer.innerHTML = "";
         count = 0;
-        countContainer.innerText = `Total Item: ${count}`;
+        countContainer.innerText = `Total Displayed Item: ${count}`;
         errorDiv.innerText = "Search field cannot be empty!!!";
         return;
       }
@@ -32,19 +32,20 @@ searchBtn.addEventListener('click', function(){
             showInfo(data);
           }, 1500);
         })
-});
-
+};
+searchBtn.addEventListener('click', loadData);
+// loading information
 const showInfo = info => {
     const convertedArray = info.docs;
     // Error Handing
     if (convertedArray.length === 0) {
         errorDiv.innerText = "NO Result Found";
         count = 0;
-        countContainer.innerText = `Total Item: ${count}`;
+        countContainer.innerText = `Total Displayed Item: ${count}`;
     } else {
         errorDiv.innerText = "";
     }
-    // const slicedArrry = convertedArray.slice(0, 12);
+    // array iteration
     convertedArray.forEach(details => {
 
         // Error handling of image
@@ -52,9 +53,7 @@ const showInfo = info => {
         if(details.cover_i===undefined){
            imageUrl = 'https://previews.123rf.com/images/pavelstasevich/pavelstasevich1811/pavelstasevich181101065/112815953-no-image-available-icon-flat-vector.jpg';
         }
-
-        // console.log(`${details.title}, ${details.author_name}, ${details.publisher}, ${details.first_publish_year}`);
-
+        
         const columnDiv = document.createElement('div');
         columnDiv.className = 'col-md-3 col-12';
         columnDiv.innerHTML = `
@@ -71,6 +70,6 @@ const showInfo = info => {
         detailsContainer.appendChild(columnDiv);
         count++;
     });
-    countContainer.innerText = `Total Item: ${count}`;
+    countContainer.innerText = `Total Displayed Item: ${count}`;
     searchInput.value = '';
 };
