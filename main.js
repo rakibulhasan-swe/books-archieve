@@ -5,6 +5,7 @@ const countContainer = document.getElementById('count');
 const errorDiv = document.getElementById('error-div');
 const spinner = document.getElementById("spinner");
 let count = 0;
+let totalItem=0;
 
 const loadData = () =>{
     const searchText = searchInput.value;
@@ -12,7 +13,8 @@ const loadData = () =>{
     if (searchText === "") {
         detailsContainer.innerHTML = "";
         count = 0;
-        countContainer.innerText = `Total Displayed Item: ${count}`;
+        totalItem=0;
+        countContainer.innerText = `Total Founded Item: ${totalItem} - Total Displayed Item: ${count}`;
         errorDiv.innerText = "Search field cannot be empty!!!";
         return;
       }
@@ -36,12 +38,15 @@ const loadData = () =>{
 searchBtn.addEventListener('click', loadData);
 // loading information
 const showInfo = info => {
+    let totalNumber = info.numFound;
+    totalItem = totalNumber;
+
     const convertedArray = info.docs;
     // Error Handing
     if (convertedArray.length === 0) {
         errorDiv.innerText = "NO Result Found";
         count = 0;
-        countContainer.innerText = `Total Displayed Item: ${count}`;
+        countContainer.innerText = `Total Founded Item: ${totalItem} - Total Displayed Item: ${count}`;
     } else {
         errorDiv.innerText = "";
     }
@@ -70,6 +75,6 @@ const showInfo = info => {
         detailsContainer.appendChild(columnDiv);
         count++;
     });
-    countContainer.innerText = `Total Displayed Item: ${count}`;
+    countContainer.innerText = `Total Founded Item: ${totalItem} - Total Displayed Item: ${count}`;
     searchInput.value = '';
 };
