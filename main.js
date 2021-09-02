@@ -12,7 +12,7 @@ searchBtn.addEventListener('click', function(){
     if (searchText === "") {
         detailsContainer.innerHTML = "";
         count = 0;
-        countContainer.innerHTML = `Element: ${count}`;
+        countContainer.innerText = `Total Item: ${count}`;
         errorDiv.innerText = "Search field cannot be empty!!!";
         return;
       }
@@ -40,7 +40,7 @@ const showInfo = info => {
     if (convertedArray.length === 0) {
         errorDiv.innerText = "NO Result Found";
         count = 0;
-        countContainer.innerHTML = `Element: ${count}`;
+        countContainer.innerText = `Total Item: ${count}`;
     } else {
         errorDiv.innerText = "";
     }
@@ -58,7 +58,7 @@ const showInfo = info => {
         const columnDiv = document.createElement('div');
         columnDiv.className = 'col-md-3 col-12';
         columnDiv.innerHTML = `
-            <div class="card p-3 my-2 shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;">
+            <div class="card p-3 my-2 shadow-lg p-3 mb-5 bg-white rounded">
                 <img id="notShown" src="${imageUrl}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Book Name: ${details.title}</h5>
@@ -71,6 +71,6 @@ const showInfo = info => {
         detailsContainer.appendChild(columnDiv);
         count++;
     });
-    countContainer.innerHTML = `Element: ${count}`;
+    countContainer.innerText = `Total Item: ${count}`;
     searchInput.value = '';
 };
