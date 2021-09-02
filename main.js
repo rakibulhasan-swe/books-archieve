@@ -21,12 +21,12 @@ searchBtn.addEventListener('click', function(){
     detailsContainer.innerHTML = "";
     
 
-    const url = `http://openlibrary.org/search.json?q=${searchText}`;
+    const url = `https://openlibrary.org/search.json?q=${searchText}`;
     spinner.classList.remove("d-none");
     fetch(url)
         .then(res => res.json())
         .then(data => {
-        // Setting a timer of 1.5s, before removing the spinnner, and showing data
+        // Setting a timer of 1.5s
         setTimeout(() => {
             spinner.classList.add("d-none");
             showInfo(data);
@@ -44,8 +44,8 @@ const showInfo = info => {
     } else {
         errorDiv.innerText = "";
     }
-    const slicedArrry = convertedArray.slice(0, 12);
-    slicedArrry.forEach(details => {
+    // const slicedArrry = convertedArray.slice(0, 12);
+    convertedArray.forEach(details => {
 
         // Error handling of image
         let imageUrl = `https://covers.openlibrary.org/b/id/${details.cover_i}-M.jpg`;
