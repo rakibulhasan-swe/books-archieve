@@ -22,7 +22,7 @@ const loadData = () =>{
     count = 0;
     detailsContainer.innerHTML = "";
     
-
+    //fetching api
     const url = `https://openlibrary.org/search.json?q=${searchText}`;
     spinner.classList.remove("d-none");
     fetch(url)
@@ -38,6 +38,7 @@ const loadData = () =>{
 searchBtn.addEventListener('click', loadData);
 // loading information
 const showInfo = info => {
+    // total result
     let totalNumber = info.numFound;
     totalItem = totalNumber;
 
@@ -50,8 +51,9 @@ const showInfo = info => {
     } else {
         errorDiv.innerText = "";
     }
-    // array iteration
-    convertedArray.forEach(details => {
+    // sliced array and array iteration
+    const slicedArray = convertedArray.slice(0, 30);
+    slicedArray.forEach(details => {
 
         // Error handling of image
         let imageUrl = `https://covers.openlibrary.org/b/id/${details.cover_i}-M.jpg`;
