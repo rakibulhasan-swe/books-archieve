@@ -71,7 +71,7 @@ const showInfo = info => {
                 <div class="card-body">
                     <h5 class="card-title">Book Name: ${details.title}</h5>
                     <p class="card-text">Author Name: ${details.author_name}</p>
-                    <p class="card-text">Publisher Name: ${details.publisher}</p>
+                    <p class="card-text">Publisher Name: ${details.publisher.slice(0, 100) + (details.publisher.length > 100 ? "..." : "")}</p>
                     <p class="card-text">Published year: ${details.first_publish_year}</p>
                 </div>
             </div>
