@@ -4,6 +4,8 @@ const detailsContainer = document.getElementById('books-details');
 const countContainer = document.getElementById('count');
 const errorDiv = document.getElementById('error-div');
 const spinner = document.getElementById("spinner");
+
+// total item count
 let count = 0;
 let totalItem=0;
 
